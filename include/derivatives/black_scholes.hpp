@@ -2,11 +2,14 @@
 
 #include <cmath>
 #include <numbers>
+#include <algorithm>
 
 namespace derivatives {
 
 inline double standard_normal_cdf(double x) noexcept {
-    return 0.5 * std::erfc(-x * std::numbers::inv_sqrt2);
+    // 0.5 * erfc(-x / sqrt(2))
+    constexpr double inv_sqrt2 = 0.70710678118654752440;
+    return 0.5 * std::erfc(-x * inv_sqrt2);
 }
 
 inline double standard_normal_pdf(double x) noexcept {
